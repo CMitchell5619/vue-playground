@@ -10,7 +10,7 @@
             screen.
           </p>
           <!-- add code to element below -->
-          <div class="player-card text-center">
+          <div class="player-card text-center" v-if="true">
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -38,7 +38,7 @@
             toggle the value to true to get it to show up again.
           </p>
           <!-- add code to element below -->
-          <div class="player-card text-center">
+          <div class="player-card text-center" v-if="state.showPlayer">
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -67,25 +67,26 @@
             to add another condition.
           </p>
           <!-- v-if comparing grade and 90 -->
-          <div>
+          <div v-if="state.grade > 90">
             <p>The grade is 'A'.</p>
           </div>
           <!-- v-else-if comparing grade and 80 -->
-          <div>
+          <div v-if="state.grade > 80 && state.grade < 91">
             <p>The grade is 'B'.</p>
           </div>
           <!-- v-else-if comparing grade and 70 -->
-          <div>
+          <div v-if="state.grade > 70 && state.grade < 81">
             <p>The grade is 'C'.</p>
           </div>
           <!-- v-else-if comparing grade and 60 -->
-          <div>
+          <div v-if="state.grade > 60 && state.grade < 71">
             <p>The grade is 'D'.</p>
           </div>
           <!-- v-else to display if all the others fail -->
-          <div>
+          <div v-if="state.grade < 60">
             <p>The grade is 'F'.</p>
           </div>
+          <input v-model="state.grade">
         </div>
         <div class="border p-1">
           <h5>Using The v-show Directive</h5>
@@ -130,12 +131,14 @@ export default {
     const state = reactive({
       //add a property to toggle the player-card here.
       //add a property to set the number value here.
+      grade: 0,
       player: {
         photo: "https://robohash.org/D$",
         name: "D$",
         position: "WR",
         number: 4,
       },
+      showPlayer: 1,
     });
     return {
       state,
